@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "helpfromhexxy",
+  "version": "${version}",
+  "name": "Help From Hexxy",
+  "description": "Help From Hexxy addon for Hex Casting",
+  "authors": [
+    "kineticcat"
+  ],
+  "contact": {
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.kineticcat.helpfromhexxy.fabric.HelpFromHexxyFabric"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.kineticcat.helpfromhexxy.fabric.HelpFromHexxyClientFabric"
+      }
+    ]
+  },
+  "mixins": [
+    "helpfromhexxy-common.mixins.json",
+    "helpfromhexxy-fabric.mixins.json"
+  ],
+  "accessWidener": "fabrichelpfromhexxy.accesswidener",
+  "depends": {
+    "minecraft": ">=${minecraftVersion}",
+    "fabricloader": ">=${fabricLoaderVersion}",
+    "fabric-api": "*",
+    "fabric-language-kotlin": ">=${fabricKotlinVersion}",
+    "architectury": ">=${architecturyVersion}",
+    "hexcasting": ">=${hexcastingVersion}"
+  }
+}

@@ -49,6 +49,8 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
     shade 'org.jblas:jblas:1.2.5'
+
+    modApi "com.samsthenerd.inline:inline-forge:${project.inline_version}"
 }
 
 processResources {

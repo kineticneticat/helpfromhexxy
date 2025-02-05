@@ -50,9 +50,9 @@ public class HexxySaysRenderer implements InlineRenderer<HexxySaysData> {
         context.pose().scale(BUBBLE_SCALE, BUBBLE_SCALE, 1);
         context.pose().translate(0, -vertDelta, 0);
         Matrix4f mat = context.pose().last().pose();
-        quad(consumer, mat, norm, 0, 0, startWidth, 8f, 0, 0, 26 * horizDiv, 1, trContext.light(), 0);
-        quad(consumer, mat, norm, startWidth, 0, scaledTextWidth, 8f, 26*horizDiv, 0, horizDiv, 1, trContext.light(), 0);
-        quad(consumer, mat, norm, startWidth + scaledTextWidth, 0, 4f, 8f, 28*horizDiv, 0, 4*horizDiv, 1, trContext.light(), 0);
+        quad(consumer, mat, norm, 0, 0, startWidth, 8f, 0, 0, 26 * horizDiv, 1, trContext.light(), -1);
+        quad(consumer, mat, norm, startWidth, 0, scaledTextWidth, 8f, 26*horizDiv, 0, horizDiv, 1, trContext.light(), -1);
+        quad(consumer, mat, norm, startWidth + scaledTextWidth, 0, 4f, 8f, 28*horizDiv, 0, 4*horizDiv, 1, trContext.light(), -1);
         context.pose().popPose();
 //        font.drawInBatch(Component.literal(text).withStyle(style), startWidth, 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light(), true );
         font.drawInBatch(Component.literal(text), startWidth+(horizDelta/1.5f), 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light());

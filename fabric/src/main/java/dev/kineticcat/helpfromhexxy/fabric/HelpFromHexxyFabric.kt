@@ -1,6 +1,7 @@
 package dev.kineticcat.helpfromhexxy.fabric;
 
 import dev.kineticcat.helpfromhexxy.HelpFromHexxy;
+import me.shedaniel.autoconfig.AutoConfig
 //import dev.kineticcat.complexhex.block.ComplexHexBlocks
 //import dev.kineticcat.complexhex.block.entity.ComplexHexBlockEntities
 //import dev.kineticcat.complexhex.entity.ComplexHexEntities
@@ -19,6 +20,8 @@ import net.fabricmc.api.ModInitializer;
 object HelpFromHexxyFabric : ModInitializer {
 
     override fun onInitialize() {
+//        HelpFromHexxyConfigFabric.init()
         HelpFromHexxy.init()
+
     }
 }

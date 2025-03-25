@@ -63,10 +63,10 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
+    modApi "com.samsthenerd.inline:inline-fabric:${project.inline_version}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
-
-    modApi "com.samsthenerd.inline:inline-fabric:${project.inline_version}"
 }
 
 processResources {

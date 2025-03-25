@@ -14,6 +14,6 @@ public class ComplexhexAbstractionsImpl {
     }
 	
     public static void initPlatformSpecific() {
-        ComplexhexConfigForge.init();
+        HelpFromHexxyConfigForge.init();
     }
 }

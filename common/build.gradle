@@ -23,7 +23,7 @@ dependencies {
     modCompileOnly "at.petra-k.hexcasting:hexcasting-fabric-$minecraftVersion:$hexcastingVersion"
     modCompileOnly "vazkii.patchouli:Patchouli-xplat:$minecraftVersion-$patchouliVersion"
     implementation group: "org.jblas", name: "jblas", version: "1.2.5"
-    include modApi("com.samsthenerd.inline:inline-common:${project.inline_version}")
+    modApi "com.samsthenerd.inline:inline-common:${project.inline_version}"
 }
 
 publishing {

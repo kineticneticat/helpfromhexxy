@@ -64,6 +64,8 @@ public class HelpFromHexxyConfig {
     }
 
     public interface ClientConfigAccess {
+
+        boolean modifyMishaps = true;
     }
 
     public interface ServerConfigAccess {

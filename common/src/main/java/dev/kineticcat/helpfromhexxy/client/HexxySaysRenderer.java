@@ -35,27 +35,48 @@ public class HexxySaysRenderer implements InlineRenderer<HexxySaysData> {
         RenderSystem.setShader(GameRenderer::getRendertypeEntityTranslucentShader);
         VertexConsumer consumer = context.bufferSource().getBuffer(RenderType.entityTranslucent(hexture));
         context.pose().translate(0, 0, 1);
-        Matrix3f norm = context.pose().last().normal();
+
         float horizDiv = 1f / 32f;
         float vertDiv = 1f / 16f;
-        float startWidth = 8f * (26f / 16f);
+        float fullHeight = vertDiv * 16;
+        float startWidth = 26 * horizDiv;
         Font font = Minecraft.getInstance().font;
-        int actualTextWidth = font.width(text);
-        float scaledTextWidth = actualTextWidth/BUBBLE_SCALE;
-        // (width*1.3 - width)/2 where width = startWidth + scaledTextWidth + 4f
-        float width = startWidth + scaledTextWidth + 4;
-        float horizDelta = (width*BUBBLE_SCALE - width)/2;
-        float vertDelta = (8*BUBBLE_SCALE - 8) /2;
-        context.pose().pushPose();
-        context.pose().scale(BUBBLE_SCALE, BUBBLE_SCALE, 1);
-        context.pose().translate(0, -vertDelta, 0);
-        Matrix4f mat = context.pose().last().pose();
-        quad(consumer, mat, norm, 0, 0, startWidth, 8f, 0, 0, 26 * horizDiv, 1, trContext.light(), -1);
-        quad(consumer, mat, norm, startWidth, 0, scaledTextWidth, 8f, 26*horizDiv, 0, horizDiv, 1, trContext.light(), -1);
-        quad(consumer, mat, norm, startWidth + scaledTextWidth, 0, 4f, 8f, 28*horizDiv, 0, 4*horizDiv, 1, trContext.light(), -1);
-        context.pose().popPose();
-//        font.drawInBatch(Component.literal(text).withStyle(style), startWidth, 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light(), true );
-        font.drawInBatch(Component.literal(text), startWidth+(horizDelta/1.5f), 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light());
+        int textWidth = font.width(text);
+        float endWidth = 5 * horizDiv;
+
+        context.pose().pushPose(); {
+            context.pose().scale(BUBBLE_SCALE, BUBBLE_SCALE, 1);
+            float width = startWidth * 16 + textWidth/BUBBLE_SCALE + endWidth*16;
+            float horizDelta = (width * BUBBLE_SCALE - width) / 2;
+            float height = fullHeight * 8;
+            float vertDelta = (height * BUBBLE_SCALE - height) / 2;
+            context.pose().translate(/*-horizDelta/BUBBLE_SCALE*/0, -vertDelta/BUBBLE_SCALE, 0);
+            Matrix4f mat = context.pose().last().pose();
+            Matrix3f norm = context.pose().last().normal();
+            quad(consumer, mat, norm, 0, 0, startWidth * 16, fullHeight * 8, 0, 0, startWidth, fullHeight, trContext.light(), 0);
+            quad(consumer, mat, norm, startWidth * 16, 0, textWidth/BUBBLE_SCALE, fullHeight * 8, startWidth, 0, horizDiv, fullHeight, trContext.light(), 0);
+            quad(consumer, mat, norm, (startWidth * 16) + textWidth/BUBBLE_SCALE, 0, endWidth * 16, fullHeight * 8, startWidth + horizDiv, 0, endWidth, fullHeight, trContext.light(), 0);
+        } context.pose().popPose();
+//        HelpFromHexxy.LOGGER.info(style);
+//        font.drawInBatch(((MutableComponent) Component.literal(text)).setStyle(style), startWidth*16*BUBBLE_SCALE, 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light(), true);
+        font.drawInBatch(Component.literal(text), startWidth*16*BUBBLE_SCALE, 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light());
+
+//        int actualTextWidth = font.width(text);
+//        float scaledTextWidth = actualTextWidth/BUBBLE_SCALE;
+//        // (width*1.3 - width)/2 where width = startWidth + scaledTextWidth + 4f
+//        float width = startWidth + scaledTextWidth + 4;
+//        float horizDelta = (width*BUBBLE_SCALE - width)/2;
+//        float vertDelta = (8*BUBBLE_SCALE - 8) /2;
+//        context.pose().pushPose();
+//        context.pose().scale(BUBBLE_SCALE, BUBBLE_SCALE, 1);
+//        context.pose().translate(0, -vertDelta, 0);
+//        Matrix4f mat = context.pose().last().pose();
+//        quad(consumer, mat, norm, 0, 0, startWidth, 8f, 0, 0, 26 * horizDiv, 1, trContext.light(), 0);
+//        quad(consumer, mat, norm, startWidth, 0, scaledTextWidth, 8f, 26*horizDiv, 0, horizDiv, 1, trContext.light(), 0);
+//        quad(consumer, mat, norm, startWidth + scaledTextWidth, 0, 4f, 8f, 28*horizDiv, 0, 4*horizDiv, 1, trContext.light(), 0);
+//        context.pose().popPose();
+////        font.drawInBatch(Component.literal(text).withStyle(style), startWidth, 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light(), true );
+//        font.drawInBatch(Component.literal(text), startWidth+(horizDelta/1.5f), 0, 0, false, context.pose().last().pose(), context.bufferSource(), Font.DisplayMode.NORMAL, 0, trContext.light());
         return charWidth(data, style, codepoint);
     }
 

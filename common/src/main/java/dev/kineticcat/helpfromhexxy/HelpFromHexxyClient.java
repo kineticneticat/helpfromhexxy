@@ -66,8 +66,16 @@ public class HelpFromHexxyClient {
         filereg.accept("I_Use_WispOS_Btw", "iusewisposbtw");
         register.accept("psexxy");
         register.accept("concern");
+        register.accept("widexxy");
         filereg.accept("amethyst_cherish", "amethystcherish");
 
+        register.accept("widexxy_left");
+        register.accept("widexxy_left_eye");
+        register.accept("widexxy_left_eye_weed");
+        register.accept("widexxy_center");
+        register.accept("widexxy_right_eye_weed");
+        register.accept("widexxy_right_eye");
+        register.accept("widexxy_right");
 
     }
 }
